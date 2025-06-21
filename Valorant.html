@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Harga Valorant Points</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 25%, #0e1a2e 50%, #1a1a2e  75%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff4655, #ff6b7d);
+            border-radius: 50%;
+            animation: particleFloat 8s linear infinite;
+            opacity: 0;
+        }
+
+        .particle:nth-child(odd) {
+            background: linear-gradient(45deg, #00f5ff, #4fc3f7);
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Cyberpunk grid background */
+        .cyber-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 70, 85, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 70, 85, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            z-index: -2;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 70, 85, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .header h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            text-shadow: 0 0 20px rgba(255, 70, 85, 0.8);
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ff4655, #00f5ff, #ff6b7d, #4fc3f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 300% 300%;
+            animation: gradientShift 4s ease infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .valorant-logo {
+            display: inline-block;
+            margin-right: 20px;
+            animation: logoGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            0% { text-shadow: 0 0 20px rgba(255, 70, 85, 0.8); }
+            100% { text-shadow: 0 0 30px rgba(255, 70, 85, 1), 0 0 40px rgba(0, 245, 255, 0.5); }
+        }
+
+        .price-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background: rgba(22, 33, 62, 0.9);
+            border-radius: 20px;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #ff4655, #00f5ff, #ff6b7d, #4fc3f7);
+            background-size: 300% 300%;
+            animation: borderGlow 3s ease infinite;
+            z-index: -1;
+            margin: -2px;
+            border-radius: 22px;
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .price-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 
+                0 30px 60px rgba(255, 70, 85, 0.4),
+                0 0 50px rgba(0, 245, 255, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #ff4655 0%, #ff6b7d 50%, #00f5ff 100%);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            animation: rotate 6s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .card-header h3 {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-header .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+            color: white;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            position: relative;
+            z-index: 1;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .card-content {
+            padding: 35px;
+            background: rgba(14, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 70, 85, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 70, 85, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .price-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 70, 85, 0.1);
+            border-color: rgba(255, 70, 85, 0.5);
+            box-shadow: 
+                0 10px 25px rgba(255, 70, 85, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .price-item:hover::before {
+            left: 100%;
+        }
+
+        .item-name {
+            color: #ffffff;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .item-name i {
+            margin-right: 15px;
+            color: #00f5ff;
+            font-size: 1.3rem;
+            animation: iconGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes iconGlow {
+            0% { text-shadow: 0 0 10px rgba(0, 245, 255, 0.5); }
+            100% { text-shadow: 0 0 20px rgba(0, 245, 255, 1); }
+        }
+
+        .item-price {
+            font-weight: bold;
+            color: #ffffff;
+            font-size: 1.2rem;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #ff4655, #ff6b7d);
+            border-radius: 25px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .item-price::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .item-price:hover::before {
+            left: 100%;
+        }
+
+        .buy-button {
+            margin-top: 35px;
+        }
+
+        .btn-buy {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, #ff4655 0%, #ff6b7d 50%, #00f5ff 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(255, 70, 85, 0.3);
+        }
+
+        .btn-buy::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-buy:hover::before {
+            left: 100%;
+        }
+
+        .btn-buy:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 20px 40px rgba(255, 70, 85, 0.5),
+                0 0 30px rgba(0, 245, 255, 0.3);
+        }
+
+        .btn-buy i {
+            margin-right: 12px;
+            font-size: 1.4rem;
+            animation: cartBounce 1s ease-in-out infinite;
+        }
+
+        @keyframes cartBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        .special-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff4655, #ff6b7d);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: badgePulse 2s ease-in-out infinite;
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(255, 70, 85, 0.5);
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .valorant-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #00f5ff, #4fc3f7);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(0, 245, 255, 0.5);
+        }
+
+        /* Cyber effects */
+        .cyber-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255, 70, 85, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(0, 245, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+            animation: cyberPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes cyberPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+
+        @media (max-width: 768px) {
+            .price-container {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .card-content {
+                padding: 25px;
+            }
+            
+            .price-item {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cyber-grid"></div>
+    <div class="cyber-effect"></div>
+    
+    <div class="particles">
+        <!-- Particles will be generated by JavaScript -->
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>
+                <span class="valorant-logo"><i class="fas fa-crosshairs"></i></span>
+                ASTORE
+            </h1>
+            <p>Dapatkan VP Premium dengan Harga Terbaik - Proses Cepat & Aman!</p>
+        </div>
+
+        <div class="price-container">
+            <div class="price-card">
+                <div class="special-badge">BEST SELLER</div>
+                <div class="valorant-badge">VP</div>
+                <div class="card-header">
+                    <i class="fas fa-gem icon"></i>
+                    <h2>Valorant Points</h2>
+                </div>
+                <div class="card-content">
+                    <div class="price-item">
+                        <span class="item-name"><i class="fas fa-star"></i>475 VP</span>
+                        <span class="item-price">Rp 55.000</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="item-name"><i class="fas fa-star"></i>1000 VP</span>
+                        <span class="item-price">Rp 120.000</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="item-name"><i class="fas fa-star"></i>2050 VP</span>
+                        <span class="item-price">Rp 230.000</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="item-name"><i class="fas fa-star"></i>3650 VP</span>
+                        <span class="item-price">Rp 380.000</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="item-name"><i class="fas fa-star"></i>5350 VP</span>
+                        <span class="item-price">Rp 550.000</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="item-name"><i class="fas fa-crown"></i>11000 VP</span>
+                        <span class="item-price">Rp 1.050.000</span>
+                    </div>
+                    <div class="buy-button">
+                        <a href="https://wa.me/6283874806543?text=Saya%20ingin%20membeli%20Valorant%20Points" class="btn-buy">
+                            <i class="fas fa-shopping-cart"></i> Beli VP Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Generate animated particles
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            const particleCount = 20;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Initialize particles when page loads
+        document.addEventListener('DOMContentLoaded', createParticles);
+
+        // Add hover effects
+        document.querySelectorAll('.price-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(10px) scale(1.02)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
