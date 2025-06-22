@@ -108,7 +108,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PUBG Mobile Flash Sale | Item Spesial Diskon Besar</title>
+    <title>PUBG Mobile Flash Sale | 3 Item Spesial Diskon Besar</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -116,15 +116,15 @@
         .flash-pulse { animation: pulse 1.5s infinite; }
         .discount-badge {
             position: absolute; top: -10px; right: -10px;
-            background: #ef4444; color: white; width: 40px; height: 40px;
+            background: #ef4444; color: white; width: 50px; height: 50px;
             border-radius: 50%; display: flex; align-items: center;
-            justify-content: center; font-weight: bold;
+            justify-content: center; font-weight: bold; font-size: 14px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         .sold-badge {
             position: absolute; top: -10px; left: -10px;
-            background: #05a305; color: white; padding: 2px 8px;
-            border-radius: 12px; font-size: 10px; font-weight: bold;
+            background: #05a305; color: white; padding: 4px 12px;
+            border-radius: 12px; font-size: 12px; font-weight: bold;
         }
         .header-logo {
             background: linear-gradient(135deg, #f59e0b, #ef4444);
@@ -135,6 +135,20 @@
         .btn-disabled {
             opacity: 0.6; cursor: not-allowed; pointer-events: none;
         }
+        .coming-soon {
+            filter: grayscale(100%);
+            opacity: 0.7;
+        }
+        .coming-soon-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px;
+        }
+        .product-card {
+            min-height: 300px;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -142,96 +156,125 @@
     <!-- Flash Sale Section -->
     <div class="container mx-auto px-4 py-8">
         <div class="text-center mb-8">
-            <h2 class="text-3xl font-bold text-gray-800 mb-2">
+            <h2 class="text-4xl font-bold text-gray-800 mb-2">
                 <span class="bg-gradient-to-r from-yellow-500 to-red-500 text-transparent bg-clip-text">
                     FLASH SALE SPESIAL!
                 </span>
             </h2>
-    
+            <p class="text-gray-600">3 Item Terpilih dengan Diskon Fantastis</p>
         </div>
 
         <div class="flash-sale bg-white rounded-xl overflow-hidden shadow-lg mb-6 relative">
             <!-- Sale Header with Countdown -->
-            <div class="bg-gradient-to-r from-rose-500 to-red-700 py-4 px-6 flex flex-col sm:flex-row justify-between items-center">
-                <div class="mb-3 sm:mb-0">
-                    <h3 class="text-xl font-bold text-white uppercase flex items-center justify-center sm:justify-start">
-                        <i class="fas fa-bolt mr-2"></i> WAKTU TERBATAS!
+            <div id="sale-header" class="bg-gradient-to-r from-blue-500 to-purple-700 py-6 px-6 flex flex-col sm:flex-row justify-between items-center">
+                <div class="mb-4 sm:mb-0">
+                    <h3 id="sale-title" class="text-2xl font-bold text-white uppercase flex items-center justify-center sm:justify-start">
+                        <i class="fas fa-clock mr-3"></i> SEGERA DIMULAI!
                     </h3>
-                    <p class="text-yellow-200 text-xs mt-1 text-center sm:text-left" id="time-message">
-                        Berakhir pukul <span id="end-time-display">16:00</span> hari ini
+                    <p class="text-yellow-200 text-sm mt-2 text-center sm:text-left" id="time-message">
+                        Flash Sale akan dimulai pukul <span id="start-time-display">18:00</span> hari ini
                     </p>
                 </div>
                 
                 <!-- Countdown Timer -->
-                <div class="flash-timer bg-black bg-opacity-30 text-white px-4 py-2 rounded-lg flex items-center">
-                    <div class="text-center mr-2">
-                        <span id="hours" class="block text-xl font-bold">00</span>
-                        <span class="text-xs">Jam</span>
+                <div class="flash-timer bg-black bg-opacity-30 text-white px-6 py-3 rounded-lg flex items-center">
+                    <div class="text-center mr-3">
+                        <span id="hours" class="block text-2xl font-bold">00</span>
+                        <span class="text-sm">Jam</span>
                     </div>
-                    <span class="text-xl">:</span>
-                    <div class="text-center mx-2">
-                        <span id="minutes" class="block text-xl font-bold">00</span>
-                        <span class="text-xs">Menit</span>
+                    <span class="text-2xl">:</span>
+                    <div class="text-center mx-3">
+                        <span id="minutes" class="block text-2xl font-bold">00</span>
+                        <span class="text-sm">Menit</span>
                     </div>
-                    <span class="text-xl">:</span>
-                    <div class="text-center ml-2">
-                        <span id="seconds" class="block text-xl font-bold">00</span>
-                        <span class="text-xs">Detik</span>
+                    <span class="text-2xl">:</span>
+                    <div class="text-center ml-3">
+                        <span id="seconds" class="block text-2xl font-bold">00</span>
+                        <span class="text-sm">Detik</span>
                     </div>
                 </div>
             </div>
             
-            <!-- Sale Items (3 featured products) -->
-            <div class="p-6 grid grid-cols-1 sm:grid-cols-3 gap-4" id="sale-items">
+            <!-- Sale Items (3 products) -->
+            <div class="p-8 grid grid-cols-1 md:grid-cols-3 gap-6" id="sale-items">
                 <!-- Products will be inserted here by JavaScript -->
             </div>
             
-            <!-- View All Button -->
-            <div class="px-6 pb-6 text-center">
-                <a id="view-all-button" href="katalog.html" class="btn-view-all inline-block text-center bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold py-3 px-6 rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl">
-                    <i class="fas fa-arrow-right mr-2"></i> Lihat Semua Produk Flash Sale
+            <!-- View All Products Button -->
+            <div class="px-8 pb-8 text-center">
+                <a href="https://shopee.co.id/pubgmobile" 
+                   target="_blank"
+                   class="inline-block py-4 px-8 rounded-xl font-bold text-lg transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-700 hover:from-blue-700 hover:to-purple-800 text-white shadow-lg hover:shadow-xl transform hover:scale-105">
+                    <i class="fas fa-external-link-alt mr-3"></i>
+                    Lihat Semua Produk
                 </a>
             </div>
         </div>
     </div>
 
     <script>
-        // Configuration - Set your desired end time here (24-hour format)
+        // Configuration - Set your desired start and end time here (24-hour format)
         const config = {
-            endHour: 19,    // Set end hour (e.g., 16 for 4 PM)
-            endMinute: 07    // Set end minute (e.g., 30 for :30)
+            startHour: 18,   // Set start hour (e.g., 18 for 6 PM)
+            startMinute: 30,  // Set start minute (e.g., 30 for :30)
+            endHour: 20,     // Set end hour (e.g., 20 for 8 PM)
+            endMinute: 0     // Set end minute (e.g., 0 for :00)
         };
+
+        // Sale states
+        const SALE_STATES = {
+            WAITING: 'waiting',    // Before start time
+            ACTIVE: 'active',      // During sale period
+            ENDED: 'ended'         // After end time
+        };
+
+        let currentState = SALE_STATES.WAITING;
 
         // 3 Featured PUBG Mobile Products
         const products = [
             {
-                id: 1, name: "Royale Pass+", 
-                description: "Season 26 Ultimate",
-                originalPrice: "300.000", discountPrice: "90.000",
-                discount: "-70%", sold: "250+",
-                icon: "fas fa-crown", iconColor: "yellow", borderColor: "red"
+                id: 1, 
+                name: "Royale Pass+", 
+                description: "Season 26 Ultimate Edition",
+                originalPrice: "300.000", 
+                discountPrice: "90.000",
+                discount: "-70%", 
+                sold: "250+",
+                icon: "fas fa-crown", 
+                iconColor: "yellow", 
+                borderColor: "red"
             },
             {
-                id: 2, name: "Legendary Skin Set",
-                description: "Pistol + Karakter",
-                originalPrice: "1.200.000", discountPrice: "600.000",
-                discount: "-50%", sold: "180+",
-                icon: "fas fa-tshirt", iconColor: "blue", borderColor: "blue"
+                id: 2, 
+                name: "M416 Glacier",
+                description: "Legendary Upgradeable Skin",
+                originalPrice: "1.500.000", 
+                discountPrice: "825.000",
+                discount: "-45%", 
+                sold: "210+",
+                icon: "fas fa-gun", 
+                iconColor: "blue", 
+                borderColor: "blue"
             },
             {
-                id: 3, name: "Airdrop Bundle",
-                description: "5x Airdrop Premium",
-                originalPrice: "900.000", discountPrice: "315.000",
-                discount: "-65%", sold: "300+",
-                icon: "fas fa-parachute-box", iconColor: "green", borderColor: "green"
+                id: 3, 
+                name: "UC Package",
+                description: "10.000 UC + Bonus Items",
+                originalPrice: "1.200.000", 
+                discountPrice: "840.000",
+                discount: "-30%", 
+                sold: "85+",
+                icon: "fas fa-coins", 
+                iconColor: "purple", 
+                borderColor: "purple"
             }
         ];
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', () => {
-            // Display the configured end time
-            document.getElementById('end-time-display').textContent = 
-                `${config.endHour.toString().padStart(2, '0')}:${config.endMinute.toString().padStart(2, '0')}`;
+            // Display the configured start and end times
+            document.getElementById('start-time-display').textContent = 
+                `${config.startHour.toString().padStart(2, '0')}:${config.startMinute.toString().padStart(2, '0')}`;
             
             renderProducts();
             startCountdown();
@@ -240,47 +283,146 @@
         // Render products to the page
         function renderProducts() {
             const container = document.getElementById('sale-items');
+            const isWaiting = currentState === SALE_STATES.WAITING;
+            const isEnded = currentState === SALE_STATES.ENDED;
+            const isActive = currentState === SALE_STATES.ACTIVE;
+            
             container.innerHTML = products.map(product => `
-                <div class="sale-item bg-gray-50 rounded-lg p-4 relative border-2 border-${product.borderColor}-300 hover:border-${product.borderColor}-500 transition-all duration-300 flash-pulse">
-                    <div class="discount-badge">${product.discount}</div>
-                    <div class="sold-badge">Terjual ${product.sold}</div>
-                    <div class="flex items-center mb-3">
-                        <div class="w-12 h-12 bg-${product.iconColor}-100 rounded-full flex items-center justify-center mr-3">
-                            <i class="${product.icon} text-${product.iconColor}-600 text-xl"></i>
+                <div class="product-card sale-item bg-gray-50 rounded-lg p-6 relative border-2 border-${product.borderColor}-300 hover:border-${product.borderColor}-500 transition-all duration-300 ${isActive ? 'flash-pulse' : ''} ${isWaiting || isEnded ? 'coming-soon' : ''}">
+                    ${isActive ? `<div class="discount-badge">${product.discount}</div>` : ''}
+                    ${isActive ? `<div class="sold-badge">Terjual ${product.sold}</div>` : ''}
+                    
+                    ${isWaiting ? `
+                        <div class="coming-soon-overlay">
+                            <div class="text-center text-white">
+                                <i class="fas fa-lock text-3xl mb-3"></i>
+                                <div class="text-lg font-bold">SEGERA HADIR</div>
+                                <div class="text-sm">Tunggu flash sale dimulai</div>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="font-bold">${product.name}</h4>
-                            <p class="text-xs text-gray-500">${product.description}</p>
+                    ` : ''}
+                    
+                    ${isEnded ? `
+                        <div class="coming-soon-overlay">
+                            <div class="text-center text-white">
+                                <i class="fas fa-times-circle text-3xl mb-3"></i>
+                                <div class="text-lg font-bold">FLASH SALE BERAKHIR</div>
+                                <div class="text-sm">Sampai jumpa di flash sale berikutnya</div>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    <div class="flex flex-col items-center mb-6 pt-8">
+                        <div class="w-16 h-16 bg-${product.iconColor}-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="${product.icon} text-${product.iconColor}-600 text-2xl"></i>
+                        </div>
+                        <div class="text-center">
+                            <h4 class="font-bold text-lg mb-2">${product.name}</h4>
+                            <p class="text-sm text-gray-600">${product.description}</p>
                         </div>
                     </div>
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <span class="line-through text-gray-400 text-sm">Rp ${product.originalPrice}</span>
-                            <span class="block text-red-600 font-bold">Rp ${product.discountPrice}</span>
-                        </div>
+                    
+                    <!-- Price Section -->
+                    <div class="text-center">
+                        ${isWaiting ? `
+                            <div>
+                                <span class="text-gray-400 text-sm block mb-2">Harga Normal: Rp ${product.originalPrice}</span>
+                                <div class="text-3xl font-bold text-gray-600 mb-2">
+                                    <i class="fas fa-question-circle"></i> ???
+                                </div>
+                                <span class="text-xs text-gray-500">Harga flash sale akan muncul saat dimulai</span>
+                            </div>
+                        ` : `
+                            <div>
+                                <span class="line-through text-gray-400 text-sm block">Rp ${product.originalPrice}</span>
+                                <span class="block text-red-600 font-bold text-2xl">Rp ${product.discountPrice}</span>
+                            </div>
+                        `}
                     </div>
                 </div>
             `).join('');
         }
 
+        // Update header appearance based on sale state
+        function updateHeader() {
+            const header = document.getElementById('sale-header');
+            const title = document.getElementById('sale-title');
+            const timeMessage = document.getElementById('time-message');
+            
+            switch(currentState) {
+                case SALE_STATES.WAITING:
+                    header.className = "bg-gradient-to-r from-blue-500 to-purple-700 py-6 px-6 flex flex-col sm:flex-row justify-between items-center";
+                    title.innerHTML = '<i class="fas fa-clock mr-3"></i> SEGERA DIMULAI!';
+                    timeMessage.innerHTML = `Flash Sale akan dimulai pukul <span id="start-time-display">${config.startHour.toString().padStart(2, '0')}:${config.startMinute.toString().padStart(2, '0')}</span> hari ini`;
+                    break;
+                    
+                case SALE_STATES.ACTIVE:
+                    header.className = "bg-gradient-to-r from-rose-500 to-red-700 py-6 px-6 flex flex-col sm:flex-row justify-between items-center";
+                    title.innerHTML = '<i class="fas fa-bolt mr-3"></i> FLASH SALE AKTIF!';
+                    timeMessage.innerHTML = `Berakhir pukul <span id="end-time-display">${config.endHour.toString().padStart(2, '0')}:${config.endMinute.toString().padStart(2, '0')}</span> hari ini`;
+                    break;
+                    
+                case SALE_STATES.ENDED:
+                    header.className = "bg-gradient-to-r from-gray-500 to-gray-700 py-6 px-6 flex flex-col sm:flex-row justify-between items-center";
+                    title.innerHTML = '<i class="fas fa-times-circle mr-3"></i> FLASH SALE BERAKHIR!';
+                    timeMessage.textContent = 'Flash Sale telah berakhir. Sampai jumpa di flash sale berikutnya!';
+                    break;
+            }
+        }
+
         // Countdown functionality
         function startCountdown() {
+            const now = new Date();
+            const startTime = new Date();
             const endTime = new Date();
+            
+            startTime.setHours(config.startHour, config.startMinute, 0, 0);
             endTime.setHours(config.endHour, config.endMinute, 0, 0);
             
-            let saleEnded = false;
+            // Determine initial state
+            if (now < startTime) {
+                currentState = SALE_STATES.WAITING;
+            } else if (now >= startTime && now < endTime) {
+                currentState = SALE_STATES.ACTIVE;
+            } else {
+                currentState = SALE_STATES.ENDED;
+            }
+            
+            updateHeader();
+            renderProducts();
 
             const countdownInterval = setInterval(() => {
                 const now = new Date();
-                let timeRemaining = Math.floor((endTime - now) / 1000);
+                let targetTime, timeRemaining;
                 
-                if (now >= endTime) {
+                if (now < startTime) {
+                    // Countdown to start
+                    targetTime = startTime;
+                    timeRemaining = Math.floor((targetTime - now) / 1000);
+                    
+                    if (timeRemaining <= 0) {
+                        currentState = SALE_STATES.ACTIVE;
+                        updateHeader();
+                        renderProducts();
+                    }
+                } else if (now >= startTime && now < endTime) {
+                    // Countdown to end
+                    targetTime = endTime;
+                    timeRemaining = Math.floor((targetTime - now) / 1000);
+                    
+                    if (timeRemaining <= 0) {
+                        currentState = SALE_STATES.ENDED;
+                        endFlashSale();
+                    }
+                } else {
+                    // Sale has ended
                     timeRemaining = 0;
-                    if (!saleEnded) endFlashSale();
-                    saleEnded = true;
+                    if (currentState !== SALE_STATES.ENDED) {
+                        endFlashSale();
+                    }
                 }
 
-                updateTimerDisplay(timeRemaining);
+                updateTimerDisplay(Math.max(0, timeRemaining));
             }, 1000);
 
             function updateTimerDisplay(seconds) {
@@ -294,16 +436,12 @@
             }
 
             function endFlashSale() {
-                clearInterval(countdownInterval);
-                document.querySelector('.flash-timer').innerHTML = '<span class="text-xl font-bold">FLASH SALE BERAKHIR!</span>';
-                document.getElementById('time-message').textContent = 'Flash Sale telah berakhir';
+                currentState = SALE_STATES.ENDED;
+                updateHeader();
+                renderProducts();
                 
-                // Change the view all button text and disable it
-                const viewAllButton = document.getElementById('view-all-button');
-                viewAllButton.textContent = 'Flash Sale Sudah Berakhir';
-                viewAllButton.classList.add('btn-disabled');
-                viewAllButton.removeAttribute('href');
-
+                document.querySelector('.flash-timer').innerHTML = '<span class="text-xl font-bold">FLASH SALE BERAKHIR!</span>';
+                
                 // Remove pulse animation when sale ends
                 document.querySelectorAll('.flash-pulse').forEach(el => {
                     el.style.animation = 'none';
@@ -313,7 +451,6 @@
     </script>
 </body>
 </html>
-
 
 
     <!-- Free Fire Section -->
