@@ -73,6 +73,64 @@
             overflow-y: auto;
         }
 
+        .login-form {
+            display: block;
+        }
+
+        .edit-form {
+            display: none;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .login-header i {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .error-message {
+            background: #e74c3c;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            text-align: center;
+            display: none;
+        }
+
+        .admin-logout {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            display: none;
+        }
+
+        .admin-logout:hover {
+            background: #c0392b;
+        }
+
+        .welcome-message {
+            background: #3498db;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            text-align: center;
+            display: none;
+        }
+
         .admin-header {
             text-align: center;
             margin-bottom: 25px;
@@ -466,52 +524,97 @@
 
     <div class="admin-panel" id="adminPanel">
         <div class="admin-content">
-            <div class="admin-header">
-                <h2><i class="fas fa-edit"></i> Edit Produk</h2>
-                <p>Pilih produk yang ingin diedit</p>
+            <button class="admin-logout" id="logoutBtn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+
+            <!-- Login Form -->
+            <div class="login-form" id="loginForm">
+                <div class="login-header">
+                    <i class="fas fa-lock"></i>
+                    <h2>Admin Login</h2>
+                    <p>Masukkan kredensial admin untuk mengakses panel</p>
+                </div>
+                
+                <div class="error-message" id="errorMessage">
+                    Username atau password salah!
+                </div>
+
+                <form onsubmit="return login(event)">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" placeholder="Masukkan username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" placeholder="Masukkan password" required>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-save">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                        <button type="button" class="btn btn-cancel" onclick="closeAdmin()">
+                            <i class="fas fa-times"></i> Batal
+                        </button>
+                    </div>
+                </form>
             </div>
-            
-            <div class="success-message" id="successMessage">
-                Data berhasil diupdate!
+
+            <!-- Edit Form -->
+            <div class="edit-form" id="editFormContainer">
+                <div class="admin-header">
+                    <h2><i class="fas fa-edit"></i> Edit Produk</h2>
+                    <p>Pilih produk yang ingin diedit</p>
+                </div>
+                
+                <div class="welcome-message" id="welcomeMessage">
+                    Selamat datang, Admin ASTORE!
+                </div>
+
+                <div class="success-message" id="successMessage">
+                    Data berhasil diupdate!
+                </div>
+
+                <form id="editForm">
+                    <div class="form-group">
+                        <label for="categorySelect">Kategori Produk:</label>
+                        <select id="categorySelect" onchange="loadProducts()">
+                            <option value="">Pilih Kategori</option>
+                            <option value="diamond">Free Fire Diamond</option>
+                            <option value="unique">Denominasi Unik Diamond</option>
+                            <option value="membership">Free Fire Membership</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productSelect">Produk:</label>
+                        <select id="productSelect" onchange="loadProductData()" disabled>
+                            <option value="">Pilih Produk</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productName">Nama Produk:</label>
+                        <input type="text" id="productName" placeholder="Masukkan nama produk">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productPrice">Harga (Rp):</label>
+                        <input type="number" id="productPrice" placeholder="Masukkan harga">
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-save" onclick="saveProduct()">
+                            <i class="fas fa-save"></i> Simpan
+                        </button>
+                        <button type="button" class="btn btn-cancel" onclick="closeAdmin()">
+                            <i class="fas fa-times"></i> Batal
+                        </button>
+                    </div>
+                </form>
             </div>
-
-            <form id="editForm">
-                <div class="form-group">
-                    <label for="categorySelect">Kategori Produk:</label>
-                    <select id="categorySelect" onchange="loadProducts()">
-                        <option value="">Pilih Kategori</option>
-                        <option value="diamond">Free Fire Diamond</option>
-                        <option value="unique">Denominasi Unik Diamond</option>
-                        <option value="membership">Free Fire Membership</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="productSelect">Produk:</label>
-                    <select id="productSelect" onchange="loadProductData()" disabled>
-                        <option value="">Pilih Produk</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="productName">Nama Produk:</label>
-                    <input type="text" id="productName" placeholder="Masukkan nama produk">
-                </div>
-
-                <div class="form-group">
-                    <label for="productPrice">Harga (Rp):</label>
-                    <input type="number" id="productPrice" placeholder="Masukkan harga">
-                </div>
-
-                <div class="btn-group">
-                    <button type="button" class="btn btn-save" onclick="saveProduct()">
-                        <i class="fas fa-save"></i> Simpan
-                    </button>
-                    <button type="button" class="btn btn-cancel" onclick="closeAdmin()">
-                        <i class="fas fa-times"></i> Batal
-                    </button>
-                </div>
-            </form>
         </div>
     </div>
 
@@ -527,6 +630,15 @@
     </div>
 
     <script>
+        // Kredensial admin
+        const adminCredentials = {
+            username: 'astore',
+            password: 'Rafkha40'
+        };
+
+        // Status login
+        let isLoggedIn = false;
+
         // Data produk default
         let productsData = {
             diamond: [
@@ -569,20 +681,88 @@
             ]
         };
 
+        function login(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Cek kredensial
+            if (username === adminCredentials.username && password === adminCredentials.password) {
+                isLoggedIn = true;
+                showEditForm();
+                return false;
+            } else {
+                // Tampilkan pesan error
+                errorMessage.style.display = 'block';
+                // Clear form
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+                
+                // Hide error message after 3 seconds
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+                
+                return false;
+            }
+        }
+
+        function logout() {
+            isLoggedIn = false;
+            showLoginForm();
+            resetEditForm();
+        }
+
+        function showLoginForm() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('editFormContainer').style.display = 'none';
+            document.getElementById('logoutBtn').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            
+            // Clear login form
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+
+        function showEditForm() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('editFormContainer').style.display = 'block';
+            document.getElementById('logoutBtn').style.display = 'block';
+            
+            // Show welcome message
+            const welcomeMsg = document.getElementById('welcomeMessage');
+            welcomeMsg.style.display = 'block';
+            setTimeout(() => {
+                welcomeMsg.style.display = 'none';
+            }, 3000);
+        }
+
         function toggleAdmin() {
             const panel = document.getElementById('adminPanel');
-            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+            if (panel.style.display === 'block') {
+                closeAdmin();
+            } else {
+                panel.style.display = 'block';
+                if (isLoggedIn) {
+                    showEditForm();
+                } else {
+                    showLoginForm();
+                }
+            }
         }
 
         function closeAdmin() {
             document.getElementById('adminPanel').style.display = 'none';
-            resetForm();
+            resetEditForm();
         }
 
-        function resetForm() {
+        function resetEditForm() {
             document.getElementById('editForm').reset();
             document.getElementById('productSelect').disabled = true;
             document.getElementById('productSelect').innerHTML = '<option value="">Pilih Produk</option>';
+            document.getElementById('successMessage').style.display = 'none';
         }
 
         function loadProducts() {
@@ -616,6 +796,11 @@
         }
 
         function saveProduct() {
+            if (!isLoggedIn) {
+                alert('Anda harus login terlebih dahulu!');
+                return;
+            }
+            
             const category = document.getElementById('categorySelect').value;
             const productIndex = document.getElementById('productSelect').value;
             const newName = document.getElementById('productName').value;
@@ -646,7 +831,7 @@
             }, 3000);
             
             // Reset form
-            resetForm();
+            resetEditForm();
         }
 
         function formatPrice(price) {
