@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Harga Free Fire - Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .admin-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .admin-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .admin-btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        .admin-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+        }
+
+        .admin-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .admin-header {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-save {
+            background: #4ecdc4;
+            color: white;
+        }
+
+        .btn-save:hover {
+            background: #45b7aa;
+        }
+
+        .btn-cancel {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-cancel:hover {
+            background: #7f8c8d;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200px 0; }
+            100% { background-position: 200px 0; }
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header.diamond {
+            background: linear-gradient(135deg, #feca57 0%, #ff9ff3 100%);
+        }
+
+        .card-header.unique {
+            background: linear-gradient(135deg, #48dbfb 0%, #0abde3 100%);
+        }
+
+        .card-header.membership {
+            background: linear-gradient(135deg, #ff9ff3 0%, #54a0ff 100%);
+        }
+
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        }
+
+        .card-header h3 {
+            color: white;
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 5px;
+        }
+
+        .card-header .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .card-content {
+            padding: 30px;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f3f4;
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+        .price-item:hover {
+            background: linear-gradient(90deg, #f8f9ff, #e8f4fd);
+            padding-left: 15px;
+            padding-right: 15px;
+            transform: scale(1.02);
+        }
+
+        .price-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            color: #666;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+
+        .item-name i {
+            margin-right: 8px;
+            color: #4ecdc4;
+        }
+
+        .item-price {
+            font-weight: bold;
+            color: #2d3436;
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .item-price::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            transition: width 0.3s ease;
+        }
+
+        .price-item:hover .item-price::before {
+            width: 100%;
+        }
+
+        .edit-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .price-item:hover .edit-btn {
+            opacity: 1;
+        }
+
+        .buy-button {
+            margin-top: 25px;
+        }
+
+        .btn-buy {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-buy::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-buy:hover::before {
+            left: 100%;
+        }
+
+        .btn-buy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-buy i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        .special-offer {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .card-content {
+                padding: 20px;
+            }
+
+            .admin-content {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+
+        .floating-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-icon {
+            position: absolute;
+            color: rgba(255,255,255,0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-icon:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-icon:nth-child(2) { top: 20%; right: 10%; animation-delay: 1s; }
+        .floating-icon:nth-child(3) { bottom: 20%; left: 15%; animation-delay: 2s; }
+        .floating-icon:nth-child(4) { bottom: 10%; right: 20%; animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(5deg); }
+            66% { transform: translateY(10px) rotate(-5deg); }
+        }
+
+        .success-message {
+            background: #2ecc71;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-icons">
+        <i class="fas fa-gem floating-icon" style="font-size: 3rem;"></i>
+        <i class="fas fa-fire floating-icon" style="font-size: 2.5rem;"></i>
+        <i class="fas fa-crown floating-icon" style="font-size: 2.8rem;"></i>
+        <i class="fas fa-trophy floating-icon" style="font-size: 2.2rem;"></i>
+    </div>
+
+    <div class="admin-toggle">
+        <button class="admin-btn" onclick="toggleAdmin()">
+            <i class="fas fa-cog"></i> Admin Panel
+        </button>
+    </div>
+
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-content">
+            <div class="admin-header">
+                <h2><i class="fas fa-edit"></i> Edit Produk</h2>
+                <p>Pilih produk yang ingin diedit</p>
+            </div>
+            
+            <div class="success-message" id="successMessage">
+                Data berhasil diupdate!
+            </div>
+
+            <form id="editForm">
+                <div class="form-group">
+                    <label for="categorySelect">Kategori Produk:</label>
+                    <select id="categorySelect" onchange="loadProducts()">
+                        <option value="">Pilih Kategori</option>
+                        <option value="diamond">Free Fire Diamond</option>
+                        <option value="unique">Denominasi Unik Diamond</option>
+                        <option value="membership">Free Fire Membership</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="productSelect">Produk:</label>
+                    <select id="productSelect" onchange="loadProductData()" disabled>
+                        <option value="">Pilih Produk</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="productName">Nama Produk:</label>
+                    <input type="text" id="productName" placeholder="Masukkan nama produk">
+                </div>
+
+                <div class="form-group">
+                    <label for="productPrice">Harga (Rp):</label>
+                    <input type="number" id="productPrice" placeholder="Masukkan harga">
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-save" onclick="saveProduct()">
+                        <i class="fas fa-save"></i> Simpan
+                    </button>
+                    <button type="button" class="btn btn-cancel" onclick="closeAdmin()">
+                        <i class="fas fa-times"></i> Batal
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-fire"></i> ASTORE</h1>
+            <p>Dapatkan Diamond dan Membership dengan Harga Terbaik!</p>
+        </div>
+
+        <div class="grid" id="productGrid">
+            <!-- Produk akan dimuat di sini -->
+        </div>
+    </div>
+
+    <script>
+        // Data produk default
+        let productsData = {
+            diamond: [
+                { name: "5 Diamond", price: 900 },
+                { name: "12 Diamond", price: 1900 },
+                { name: "50 Diamond", price: 7500 },
+                { name: "70 Diamond", price: 9500 },
+                { name: "100 Diamond", price: 14500 },
+                { name: "140 Diamond", price: 18500 },
+                { name: "210 Diamond", price: 28000 },
+                { name: "300 Diamond", price: 40000 },
+                { name: "355 Diamond", price: 45500 },
+                { name: "500 Diamond", price: 65000 },
+                { name: "720 Diamond", price: 95000 },
+                { name: "1000 Diamond", price: 125000 },
+                { name: "1450 Diamond", price: 195000 },
+                { name: "2180 Diamond", price: 265000 },
+                { name: "3640 Diamond", price: 480000 }
+            ],
+            unique: [
+                { name: "10 Diamond", price: 2000 },
+                { name: "15 Diamond", price: 2900 },
+                { name: "20 Diamond", price: 3900 },
+                { name: "25 Diamond", price: 4500 },
+                { name: "30 Diamond", price: 6000 },
+                { name: "40 Diamond", price: 7000 },
+                { name: "55 Diamond", price: 7500 },
+                { name: "75 Diamond", price: 10000 },
+                { name: "80 Diamond", price: 11000 },
+                { name: "90 Diamond", price: 12500 },
+                { name: "120 Diamond", price: 16500 },
+                { name: "130 Diamond", price: 19000 },
+                { name: "150 Diamond", price: 20000 }
+            ],
+            membership: [
+                { name: "Level UP Pass", price: 16000 },
+                { name: "Membership Mingguan", price: 28500 },
+                { name: "Booyah Pass", price: 45000 },
+                { name: "Membership Bulanan", price: 85000 }
+            ]
+        };
+
+        function toggleAdmin() {
+            const panel = document.getElementById('adminPanel');
+            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function closeAdmin() {
+            document.getElementById('adminPanel').style.display = 'none';
+            resetForm();
+        }
+
+        function resetForm() {
+            document.getElementById('editForm').reset();
+            document.getElementById('productSelect').disabled = true;
+            document.getElementById('productSelect').innerHTML = '<option value="">Pilih Produk</option>';
+        }
+
+        function loadProducts() {
+            const category = document.getElementById('categorySelect').value;
+            const productSelect = document.getElementById('productSelect');
+            
+            productSelect.innerHTML = '<option value="">Pilih Produk</option>';
+            
+            if (category && productsData[category]) {
+                productSelect.disabled = false;
+                productsData[category].forEach((product, index) => {
+                    const option = document.createElement('option');
+                    option.value = index;
+                    option.textContent = product.name;
+                    productSelect.appendChild(option);
+                });
+            } else {
+                productSelect.disabled = true;
+            }
+        }
+
+        function loadProductData() {
+            const category = document.getElementById('categorySelect').value;
+            const productIndex = document.getElementById('productSelect').value;
+            
+            if (category && productIndex !== '' && productsData[category][productIndex]) {
+                const product = productsData[category][productIndex];
+                document.getElementById('productName').value = product.name;
+                document.getElementById('productPrice').value = product.price;
+            }
+        }
+
+        function saveProduct() {
+            const category = document.getElementById('categorySelect').value;
+            const productIndex = document.getElementById('productSelect').value;
+            const newName = document.getElementById('productName').value;
+            const newPrice = parseInt(document.getElementById('productPrice').value);
+            
+            if (!category || productIndex === '' || !newName || !newPrice) {
+                alert('Mohon lengkapi semua field!');
+                return;
+            }
+            
+            // Update data
+            productsData[category][productIndex] = {
+                name: newName,
+                price: newPrice
+            };
+            
+            // Refresh tampilan
+            renderProducts();
+            
+            // Update dropdown
+            loadProducts();
+            
+            // Show success message
+            const successMsg = document.getElementById('successMessage');
+            successMsg.style.display = 'block';
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 3000);
+            
+            // Reset form
+            resetForm();
+        }
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('id-ID').format(price);
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = '';
+
+            // Free Fire Diamond Card
+            const diamondCard = createProductCard('diamond', 'Free Fire Diamond', 'fas fa-gem', 'diamond', 'POPULER');
+            grid.appendChild(diamondCard);
+
+            // Denominasi Unik Card
+            const uniqueCard = createProductCard('unique', 'Denominasi Unik Diamond', 'fas fa-star', 'unique', 'SPESIAL');
+            grid.appendChild(uniqueCard);
+
+            // Membership Card
+            const membershipCard = createProductCard('membership', 'Free Fire Membership', 'fas fa-crown', 'membership', 'PREMIUM');
+            grid.appendChild(membershipCard);
+        }
+
+        function createProductCard(category, title, icon, headerClass, offer) {
+            const card = document.createElement('div');
+            card.className = 'game-card';
+            
+            const iconMap = {
+                diamond: 'fas fa-diamond',
+                unique: 'fas fa-star',
+                membership: 'fas fa-level-up-alt'
+            };
+
+            let itemsHtml = '';
+            productsData[category].forEach((product, index) => {
+                const itemIcon = iconMap[category] || 'fas fa-star';
+                itemsHtml += `
+                    <div class="price-item">
+                        <span class="item-name"><i class="${itemIcon}"></i>${product.name}</span>
+                        <span class="item-price">Rp ${formatPrice(product.price)}</span>
+                    </div>
+                `;
+            });
+
+            card.innerHTML = `
+                <div class="special-offer">${offer}</div>
+                <div class="card-header ${headerClass}">
+                    <i class="${icon} icon"></i>
+                    <h2>${title}</h2>
+                </div>
+                <div class="card-content">
+                    ${itemsHtml}
+                    <div class="buy-button">
+                        <a href="https://wa.me/6283874806543?text=Saya%20ingin%20membeli%20Diamond%20Free%20Fire" class="btn-buy">
+                            <i class="fas fa-shopping-cart"></i> Beli Sekarang
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Click outside to close admin panel
+        document.getElementById('adminPanel').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAdmin();
+            }
+        });
+
+        // Initial render
+        renderProducts();
+    </script>
+</body>
+</html>
