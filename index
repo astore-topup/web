@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Sedang Dalam Perbaikan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255,255,255,0.2) 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, rgba(255,255,255,0.2) 2px, transparent 2px);
+            background-size: 50px 50px;
+            animation: patternMove 20s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(50px) translateY(50px); }
+        }
+
+        .floating-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; top: 20%; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 1s; top: 80%; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 2s; top: 40%; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 3s; top: 60%; }
+        .particle:nth-child(5) { left: 60%; animation-delay: 4s; top: 30%; }
+        .particle:nth-child(6) { left: 70%; animation-delay: 5s; top: 70%; }
+        .particle:nth-child(7) { left: 80%; animation-delay: 6s; top: 50%; }
+        .particle:nth-child(8) { left: 90%; animation-delay: 7s; top: 10%; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.3; }
+            25% { transform: translateY(-20px) translateX(10px) scale(1.1); opacity: 0.5; }
+            50% { transform: translateY(0px) translateX(-10px) scale(0.9); opacity: 0.7; }
+            75% { transform: translateY(15px) translateX(5px) scale(1.05); opacity: 0.4; }
+        }
+
+        .maintenance-container {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            position: relative;
+            max-width: 600px;
+            padding: 40px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            animation: containerFadeIn 1s ease-out;
+        }
+
+        @keyframes containerFadeIn {
+            0% { opacity: 0; transform: translateY(30px) scale(0.9); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .maintenance-icon {
+            font-size: 5rem;
+            margin-bottom: 30px;
+            color: #feca57;
+            animation: iconPulse 2s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(254, 202, 87, 0.5);
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .maintenance-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: titleSlide 1s ease-out 0.3s both;
+        }
+
+        @keyframes titleSlide {
+            0% { opacity: 0; transform: translateX(-30px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .maintenance-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            line-height: 1.6;
+            animation: subtitleSlide 1s ease-out 0.6s both;
+        }
+
+        @keyframes subtitleSlide {
+            0% { opacity: 0; transform: translateX(30px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .loading-container {
+            margin: 40px 0;
+            animation: loadingFadeIn 1s ease-out 0.9s both;
+        }
+
+        @keyframes loadingFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .loading-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #feca57, #ff9ff3, #48dbfb);
+            background-size: 200% 100%;
+            border-radius: 4px;
+            animation: loadingAnimation 2s ease-in-out infinite;
+            width: 0%;
+            animation: progressBar 3s ease-in-out infinite, gradientShift 2s ease-in-out infinite;
+        }
+
+        @keyframes progressBar {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .loading-text {
+            font-size: 1rem;
+            opacity: 0.8;
+            animation: textPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes textPulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        .maintenance-gears {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: rgba(255,255,255,0.2);
+            animation: rotateCW 4s linear infinite;
+        }
+
+        .maintenance-gears::after {
+            content: '\f013';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 25px;
+            right: 15px;
+            font-size: 1.5rem;
+            animation: rotateCCW 3s linear infinite;
+        }
+
+        @keyframes rotateCW {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes rotateCCW {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
+        }
+
+        .social-links {
+            margin-top: 40px;
+            animation: socialFadeIn 1s ease-out 1.2s both;
+        }
+
+        @keyframes socialFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .social-link {
+            display: inline-block;
+            margin: 0 15px;
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.7);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            color: #feca57;
+            transform: translateY(-3px) scale(1.1);
+            text-shadow: 0 5px 15px rgba(254, 202, 87, 0.4);
+        }
+
+        .footer-text {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.6;
+            animation: footerFadeIn 1s ease-out 1.5s both;
+        }
+
+        @keyframes footerFadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 0.6; }
+        }
+
+        @media (max-width: 768px) {
+            .maintenance-container {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+            
+            .maintenance-title {
+                font-size: 2rem;
+            }
+            
+            .maintenance-subtitle {
+                font-size: 1rem;
+            }
+            
+            .maintenance-icon {
+                font-size: 4rem;
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            color: rgba(255,255,255,0.8);
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        .sparkle:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 20%; right: 20%; animation-delay: 0.5s; }
+        .sparkle:nth-child(3) { bottom: 30%; left: 25%; animation-delay: 1s; }
+        .sparkle:nth-child(4) { bottom: 15%; right: 15%; animation-delay: 1.5s; }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1) rotate(180deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+    
+    <div class="floating-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="maintenance-gears">
+        <i class="fas fa-cog"></i>
+    </div>
+
+    <div class="sparkle"><i class="fas fa-star"></i></div>
+    <div class="sparkle"><i class="fas fa-star"></i></div>
+    <div class="sparkle"><i class="fas fa-star"></i></div>
+    <div class="sparkle"><i class="fas fa-star"></i></div>
+
+    <div class="maintenance-container">
+        <div class="maintenance-icon">
+            <i class="fas fa-tools"></i>
+        </div>
+        
+        <h1 class="maintenance-title">Website Sedang Dalam Perbaikan</h1>
+        
+        <p class="maintenance-subtitle">
+            Akses kembali dalam beberapa saat....
+        </p>
+        
+        <div class="loading-container">
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <div class="loading-text">
+                <i class="fas fa-spinner fa-spin"></i> Sedang memperbarui sistem...
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="#" class="social-link" title="Facebook">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="#" class="social-link" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-link" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link" title="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+        
+        <div class="footer-text">
+            <i class="fas fa-heart"></i> Terima kasih atas kesabaran Anda
+        </div>
+    </div>
+</body>
+</html>
