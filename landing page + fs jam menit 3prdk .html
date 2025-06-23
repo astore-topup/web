@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASTore - Topup Game Termurah</title>
+    <link rel="icon" type="image/png" href="LOGO.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .game-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .price-item {
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .price-item:hover {
+            background-color: #f3f4f6;
+        }
+        
+        .btn-buy {
+            transition: all 0.2s ease;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        }
+        
+        .btn-buy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <i class="fas fa-gamepad text-3xl mr-3"></i>
+                    <h1 class="text-2xl md:text-3xl font-bold">ASTore</h1>
+                </div>
+                <nav class="flex space-x-6">
+                    <a href="#freefire" class="nav-link">Free Fire</a>
+                    <a href="#mlbb" class="nav-link">Mobile Legends</a>
+                    <a href="#valorant" class="nav-link">Valorant</a>
+                    <a href="#pubg" class="nav-link">PUBG</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-blue-50 py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">Top Up Game Termurah & Terpercaya</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+                Isi diamond, UC, dan item game favorit Anda dengan harga termurah dan proses instan!
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a href="https://wa.me/6283874806543?text=Halo,%20saya%20ingin%20bertanya%20tentang%20top%20up%20game" 
+                   class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-medium flex items-center">
+                    <i class="fab fa-whatsapp mr-2"></i> Hubungi Kami
+                </a>
+                <a href="#freefire" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-medium">
+                    Lihat Harga
+                </a>
+            </div>
+        </div>
+    </section>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUBG Mobile Flash Sale | 3 Item Spesial Diskon Besar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        .flash-pulse { animation: pulse 1.5s infinite; }
+        .discount-badge {
+            position: absolute; top: -10px; right: -10px;
+            background: #ef4444; color: white; width: 50px; height: 50px;
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-weight: bold; font-size: 14px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .sold-badge {
+            position: absolute; top: -10px; left: -10px;
+            background: #05a305; color: white; padding: 4px 12px;
+            border-radius: 12px; font-size: 12px; font-weight: bold;
+        }
+        .header-logo {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+        .btn-disabled {
+            opacity: 0.6; cursor: not-allowed; pointer-events: none;
+        }
+        .coming-soon {
+            filter: grayscale(100%);
+            opacity: 0.7;
+        }
+        .coming-soon-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px;
+        }
+        .product-card {
+            min-height: 300px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Flash Sale Section -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="text-center mb-8">
+            <h2 class="text-4xl font-bold text-gray-800 mb-2">
+                <span class="bg-gradient-to-r from-yellow-500 to-red-500 text-transparent bg-clip-text">
+                    FLASH SALE SPESIAL!
+                </span>
+            </h2>
+            <p class="text-gray-600">3 Item Terpilih dengan Diskon Fantastis</p>
+        </div>
+
+        <div class="flash-sale bg-white rounded-xl overflow-hidden shadow-lg mb-6 relative">
+            <!-- Sale Header with Countdown -->
+            <div id="sale-header" class="bg-gradient-to-r from-blue-500 to-purple-700 py-6 px-6 flex flex-col sm:flex-row justify-between items-center">
+                <div class="mb-4 sm:mb-0">
+                    <h3 id="sale-title" class="text-2xl font-bold text-white uppercase flex items-center justify-center sm:justify-start">
+                        <i class="fas fa-clock mr-3"></i> SEGERA DIMULAI!
+                    </h3>
+                    <p class="text-yellow-200 text-sm mt-2 text-center sm:text-left" id="time-message">
+                        Flash Sale akan dimulai pukul <span id="start-time-display">18:00</span> hari ini
+                    </p>
+                </div>
+                
+                <!-- Countdown Timer -->
+                <div class="flash-timer bg-black bg-opacity-30 text-white px-6 py-3 rounded-lg flex items-center">
+                    <div class="text-center mr-3">
+                        <span id="hours" class="block text-2xl font-bold">00</span>
+                        <span class="text-sm">Jam</span>
+                    </div>
+                    <span class="text-2xl">:</span>
+                    <div class="text-center mx-3">
+                        <span id="minutes" class="block text-2xl font-bold">00</span>
+                        <span class="text-sm">Menit</span>
+                    </div>
+                    <span class="text-2xl">:</span>
+                    <div class="text-center ml-3">
+                        <span id="seconds" class="block text-2xl font-bold">00</span>
+                        <span class="text-sm">Detik</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sale Items (3 products) -->
+            <div class="p-8 grid grid-cols-1 md:grid-cols-3 gap-6" id="sale-items">
+                <!-- Products will be inserted here by JavaScript -->
+            </div>
+            
+            <!-- View All Products Button -->
+            <div class="px-8 pb-8 text-center">
+                <a href="https://shopee.co.id/pubgmobile" 
+                   target="_blank"
+                   class="inline-block py-4 px-8 rounded-xl font-bold text-lg transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-700 hover:from-blue-700 hover:to-purple-800 text-white shadow-lg hover:shadow-xl transform hover:scale-105">
+                    <i class="fas fa-external-link-alt mr-3"></i>
+                    Lihat Semua Produk
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration - Set your desired start and end time here (24-hour format)
+        const config = {
+            startHour: 07,   // Set start hour (e.g., 18 for 6 PM)
+            startMinute: 0,  // Set start minute (e.g., 30 for :30)
+            endHour: 08,     // Set end hour (e.g., 20 for 8 PM)
+            endMinute: 0,    // Set end minute (e.g., 0 for :00)
+        };
+
+        // Sale states
+        const SALE_STATES = {
+            WAITING: 'waiting',    // Before start time
+            ACTIVE: 'active',      // During sale period
+            ENDED: 'ended'         // After end time
+        };
+
+        let currentState = SALE_STATES.WAITING;
+
+        // 3 Featured PUBG Mobile Products
+        const products = [
+            {
+                id: 1, 
+                name: "Royale Pass+", 
+                description: "Season 26 Ultimate Edition",
+                originalPrice: "300.000", 
+                discountPrice: "90.000",
+                discount: "-70%", 
+                sold: "250+",
+                icon: "fas fa-crown", 
+                iconColor: "yellow", 
+                borderColor: "red"
+            },
+            {
+                id: 2, 
+                name: "M416 Glacier",
+                description: "Legendary Upgradeable Skin",
+                originalPrice: "1.500.000", 
+                discountPrice: "825.000",
+                discount: "-45%", 
+                sold: "210+",
+                icon: "fas fa-gun", 
+                iconColor: "blue", 
+                borderColor: "blue"
+            },
+            {
+                id: 3, 
+                name: "UC Package",
+                description: "10.000 UC + Bonus Items",
+                originalPrice: "1.200.000", 
+                discountPrice: "840.000",
+                discount: "-30%", 
+                sold: "85+",
+                icon: "fas fa-coins", 
+                iconColor: "purple", 
+                borderColor: "purple"
+            }
+        ];
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Display the configured start and end times
+            document.getElementById('start-time-display').textContent = 
+                `${config.startHour.toString().padStart(2, '0')}:${config.startMinute.toString().padStart(2, '0')}`;
+            
+            renderProducts();
+            startCountdown();
+        });
+
+        // Render products to the page
+        function renderProducts() {
+            const container = document.getElementById('sale-items');
+            const isWaiting = currentState === SALE_STATES.WAITING;
+            const isEnded = currentState === SALE_STATES.ENDED;
+            const isActive = currentState === SALE_STATES.ACTIVE;
+            
+            container.innerHTML = products.map(product => `
+                <div class="product-card sale-item bg-gray-50 rounded-lg p-6 relative border-2 border-${product.borderColor}-300 hover:border-${product.borderColor}-500 transition-all duration-300 ${isActive ? 'flash-pulse' : ''} ${isWaiting || isEnded ? 'coming-soon' : ''}">
+                    ${isActive ? `<div class="discount-badge">${product.discount}</div>` : ''}
+                    ${isActive ? `<div class="sold-badge">Terjual ${product.sold}</div>` : ''}
+                    
+                    ${isWaiting ? `
+                        <div class="coming-soon-overlay">
+                            <div class="text-center text-white">
+                                <i class="fas fa-lock text-3xl mb-3"></i>
+                                <div class="text-lg font-bold">SEGERA HADIR</div>
+                                <div class="text-sm">Tunggu flash sale dimulai</div>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    ${isEnded ? `
+                        <div class="coming-soon-overlay">
+                            <div class="text-center text-white">
+                                <i class="fas fa-times-circle text-3xl mb-3"></i>
+                                <div class="text-lg font-bold">FLASH SALE BERAKHIR</div>
+                                <div class="text-sm">Sampai jumpa di flash sale berikutnya</div>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    <div class="flex flex-col items-center mb-6 pt-8">
+                        <div class="w-16 h-16 bg-${product.iconColor}-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="${product.icon} text-${product.iconColor}-600 text-2xl"></i>
+                        </div>
+                        <div class="text-center">
+                            <h4 class="font-bold text-lg mb-2">${product.name}</h4>
+                            <p class="text-sm text-gray-600">${product.description}</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Price Section -->
+                    <div class="text-center">
+                        ${isWaiting ? `
+                            <div>
+                                <span class="text-gray-400 text-sm block mb-2">Harga Normal: Rp ${product.originalPrice}</span>
+                                <div class="text-3xl font-bold text-gray-600 mb-2">
+                                    <i class="fas fa-question-circle"></i> ???
+                                </div>
+                                <span class="text-xs text-gray-500">Harga flash sale akan muncul saat dimulai</span>
+                            </div>
+                        ` : `
+                            <div>
+                                <span class="line-through text-gray-400 text-sm block">Rp ${product.originalPrice}</span>
+                                <span class="block text-red-600 font-bold text-2xl">Rp ${product.discountPrice}</span>
+                            </div>
+                        `}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Update header appearance based on sale state
+        function updateHeader() {
+            const header = document.getElementById('sale-header');
+            const title = document.getElementById('sale-title');
+            const timeMessage = document.getElementById('time-message');
+            
+            switch(currentState) {
+                case SALE_STATES.WAITING:
+                    header.className = "bg-gradient-to-r from-blue-500 to-purple-700 py-6 px-6 flex flex-col sm:flex-row justify-between items-center";
+                    title.innerHTML = '<i class="fas fa-clock mr-3"></i> SEGERA DIMULAI!';
+                    timeMessage.innerHTML = `Flash Sale akan dimulai pukul <span id="start-time-display">${config.startHour.toString().padStart(2, '0')}:${config.startMinute.toString().padStart(2, '0')}</span> hari ini`;
+                    break;
+                    
+                case SALE_STATES.ACTIVE:
+                    header.className = "bg-gradient-to-r from-rose-500 to-red-700 py-6 px-6 flex flex-col sm:flex-row justify-between items-center";
+                    title.innerHTML = '<i class="fas fa-bolt mr-3"></i> FLASH SALE AKTIF!';
+                    timeMessage.innerHTML = `Berakhir pukul <span id="end-time-display">${config.endHour.toString().padStart(2, '0')}:${config.endMinute.toString().padStart(2, '0')}</span> hari ini`;
+                    break;
+                    
+                case SALE_STATES.ENDED:
+                    header.className = "bg-gradient-to-r from-gray-500 to-gray-700 py-6 px-6 flex flex-col sm:flex-row justify-between items-center";
+                    title.innerHTML = '<i class="fas fa-times-circle mr-3"></i> FLASH SALE BERAKHIR!';
+                    timeMessage.textContent = 'Flash Sale telah berakhir. Sampai jumpa di flash sale berikutnya!';
+                    break;
+            }
+        }
+
+        // Countdown functionality
+        function startCountdown() {
+            const now = new Date();
+            const startTime = new Date();
+            const endTime = new Date();
+            
+            startTime.setHours(config.startHour, config.startMinute, 0, 0);
+            endTime.setHours(config.endHour, config.endMinute, 0, 0);
+            
+            // Determine initial state
+            if (now < startTime) {
+                currentState = SALE_STATES.WAITING;
+            } else if (now >= startTime && now < endTime) {
+                currentState = SALE_STATES.ACTIVE;
+            } else {
+                currentState = SALE_STATES.ENDED;
+            }
+            
+            updateHeader();
+            renderProducts();
+
+            const countdownInterval = setInterval(() => {
+                const now = new Date();
+                let targetTime, timeRemaining;
+                
+                if (now < startTime) {
+                    // Countdown to start
+                    targetTime = startTime;
+                    timeRemaining = Math.floor((targetTime - now) / 1000);
+                    
+                    if (timeRemaining <= 0) {
+                        currentState = SALE_STATES.ACTIVE;
+                        updateHeader();
+                        renderProducts();
+                    }
+                } else if (now >= startTime && now < endTime) {
+                    // Countdown to end
+                    targetTime = endTime;
+                    timeRemaining = Math.floor((targetTime - now) / 1000);
+                    
+                    if (timeRemaining <= 0) {
+                        currentState = SALE_STATES.ENDED;
+                        endFlashSale();
+                    }
+                } else {
+                    // Sale has ended
+                    timeRemaining = 0;
+                    if (currentState !== SALE_STATES.ENDED) {
+                        endFlashSale();
+                    }
+                }
+
+                updateTimerDisplay(Math.max(0, timeRemaining));
+            }, 1000);
+
+            function updateTimerDisplay(seconds) {
+                const hours = Math.floor(seconds / 3600);
+                const minutes = Math.floor((seconds % 3600) / 60);
+                const secs = seconds % 60;
+                
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = secs.toString().padStart(2, '0');
+            }
+
+            function endFlashSale() {
+                currentState = SALE_STATES.ENDED;
+                updateHeader();
+                renderProducts();
+                
+                document.querySelector('.flash-timer').innerHTML = '<span class="text-xl font-bold">FLASH SALE BERAKHIR!</span>';
+                
+                // Remove pulse animation when sale ends
+                document.querySelectorAll('.flash-pulse').forEach(el => {
+                    el.style.animation = 'none';
+                });
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+    <!-- Free Fire Section -->
+    <section id="freefire" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center mb-10">
+                <img src="https://img.icons8.com/color/60/000000/free-fire.png" alt="Free Fire" class="mr-3">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Free Fire Top Up</h2>
+            </div>
+   
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 Barang Terlaris | Flash Sale PUBG Mobile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .flash-pulse {
+            animation: pulse 1.5s infinite;
+        }
+        .discount-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #ef4444;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .sold-badge {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background: #05a305;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+<div class="container mx-auto px-4 py-8">
+    <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-gray-800 mb-2">
+            <span class="bg-gradient-to-r from-yellow-500 to-red-500 text-transparent bg-clip-text">
+                3 Barang Terlaris!
+            </span>
+        </h2>
+    </div>
+
+    <!-- Produk Terlaris -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+        <!-- Item 1 -->
+        <div class="bg-white rounded-lg p-4 relative border-2 border-red-300 hover:border-red-500 transition flash-pulse">
+            <div class="sold-badge">Terjual 50+</div>
+            <div class="flex items-center mb-3">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                   
+                    <i class="fas fa-gem icon"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold">210 Diamond</h4>
+                </div>
+            </div>
+            <div>
+                <span class="line-through text-gray-400 text-sm">Rp 32.000</span>
+                <span class="block text-red-600 font-bold">Rp 28.000</span>
+            </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="bg-white rounded-lg p-4 relative border-2 border-blue-300 hover:border-blue-500 transition flash-pulse">
+            <div class="sold-badge">Terjual 20+</div>
+            <div class="flex items-center mb-3">
+                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                     <i class="fas fa-crown icon"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold">Level Up Pass</h4>
+                </div>
+            </div>
+            <div>
+                <span class="line-through text-gray-400 text-sm">Rp 24.000</span>
+                <span class="block text-red-600 font-bold">Rp 16.000</span>
+            </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="bg-white rounded-lg p-4 relative border-2 border-green-300 hover:border-green-500 transition flash-pulse">
+            <div class="sold-badge">Terjual 40+</div>
+            <div class="flex items-center mb-3">
+                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                    <i class="fas fa-gem icon"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold">355 Diamond</h4>
+                </div>
+            </div>
+            <div>
+                <span class="line-through text-gray-400 text-sm">Rp 50.000</span>
+                <span class="block text-red-600 font-bold">Rp 45.500</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tombol Lihat Semua -->
+    <div class="text-center">
+        <a href="Freefire.html" class="inline-block text-center bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold py-3 px-6 rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl">
+            <i class="fas fa-arrow-right mr-2"></i> Lihat Semua Produk
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
+
+            
+            
+           
+    <!-- Mobile Legends Section -->
+    <section id="mlbb" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center mb-10">
+                <img src="https://img.icons8.com/?size=70&id=iKPhU4YylhZs&format=png&color=000000" alt="Mobile Legends" class="mr-3">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Mobile Legends Top Up</h2>
+            </div>
+
+            <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 Barang Terlaris | Flash Sale PUBG Mobile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .flash-pulse {
+            animation: pulse 1.5s infinite;
+        }
+        .discount-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #ef4444;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .sold-badge {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background: #05a305;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+<div class="container mx-auto px-4 py-8">
+    <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-gray-800 mb-2">
+            <span class="bg-gradient-to-r from-yellow-500 to-red-500 text-transparent bg-clip-text">
+                3 Barang Terlaris!
+            </span>
+        </h2>
+    </div>
+
+    <!-- Produk Terlaris -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+        <!-- Item 1 -->
+        <div class="bg-white rounded-lg p-4 relative border-2 border-red-300 hover:border-red-500 transition flash-pulse">
+            <div class="sold-badge">Terjual 70+</div>
+            <div class="flex items-center mb-3">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                   
+                    <i class="fas fa-gem icon"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold">3 Diamond</h4>
+                </div>
+            </div>
+            <div>
+                <span class="line-through text-gray-400 text-sm">Rp 2.500</span>
+                <span class="block text-red-600 font-bold">Rp 2.000</span>
+            </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="bg-white rounded-lg p-4 relative border-2 border-blue-300 hover:border-blue-500 transition flash-pulse">
+            <div class="sold-badge">Terjual 60+</div>
+            <div class="flex items-center mb-3">
+                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                     <i class="fas fa-crown icon"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold">1x Weekly Diamond Pass</h4>
+                </div>
+            </div>
+            <div>
+                <span class="line-through text-gray-400 text-sm">Rp 38.000</span>
+                <span class="block text-red-600 font-bold">Rp 33.000</span>
+            </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="bg-white rounded-lg p-4 relative border-2 border-green-300 hover:border-green-500 transition flash-pulse">
+            <div class="sold-badge">Terjual 40+</div>
+            <div class="flex items-center mb-3">
+                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                    <i class="fas fa-gem icon"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold">5 Diamond</h4>
+                </div>
+            </div>
+            <div>
+                <span class="line-through text-gray-400 text-sm">Rp 3.500</span>
+                <span class="block text-red-600 font-bold">Rp 2.500</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tombol Lihat Semua -->
+    <div class="text-center">
+        <a href="Mobilelegends.html" class="inline-block text-center bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold py-3 px-6 rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl">
+            <i class="fas fa-arrow-right mr-2"></i> Lihat Semua Produk
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+            
+          
+    </section>
+
+    <!-- Valorant Section -->
+    <section id="valorant" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center mb-10">
+                <img src="https://img.icons8.com/color/60/000000/valorant.png" alt="Valorant" class="mr-3">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Valorant Top Up</h2>
+            </div>
+
+            <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 Barang Terlaris | Flash Sale PUBG Mobile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .flash-pulse {
+            animation: pulse 1.5s infinite;
+        }
+        .discount-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #ef4444;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .sold-badge {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background: #05a305;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+<div class="container mx-auto px-4 py-8">
+    <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-gray-800 mb-2">
+            <span class="bg-gradient-to-r from-yellow-500 to-red-500 text-transparent bg-clip-text">
+                3 Barang Terlaris!
+            </span>
+        </h2>
+    </div>
+
+    <!-- Produk Terlaris -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+        <!-- Item 1 -->
+        <div class="bg-white rounded-lg p-4 relative border-2 border-red-300 hover:border-red-500 transition flash-pulse">
+            <div class="sold-badge">Terjual 20+</div>
+            <div class="flex items-center mb-3">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                   
+                    <i class="fas fa-gem icon"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold">475 Valorant Points</h4>
+                </div>
+            </div>
+            <div>
+                <span class="line-through text-gray-400 text-sm">Rp 65.000</span>
+                <span class="block text-red-600 font-bold">Rp 55.000</span>
+            </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="bg-white rounded-lg p-4 relative border-2 border-blue-300 hover:border-blue-500 transition flash-pulse">
+            <div class="sold-badge">Terjual 15+</div>
+            <div class="flex items-center mb-3">
+                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                     <i class="fas fa-crown icon"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold">1000 Valorant Points</h4>
+                </div>
+            </div>
+            <div>
+                <span class="line-through text-gray-400 text-sm">Rp 150.000</span>
+                <span class="block text-red-600 font-bold">Rp 120.000</span>
+            </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="bg-white rounded-lg p-4 relative border-2 border-green-300 hover:border-green-500 transition flash-pulse">
+            <div class="sold-badge">Terjual 10+</div>
+            <div class="flex items-center mb-3">
+                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                    <i class="fas fa-gem icon"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold">2050 Valorant Points</h4>
+                </div>
+            </div>
+            <div>
+                <span class="line-through text-gray-400 text-sm">Rp 250.000</span>
+                <span class="block text-red-600 font-bold">Rp 230.000</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tombol Lihat Semua -->
+    <div class="text-center">
+        <a href="Valorant.html" class="inline-block text-center bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold py-3 px-6 rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl">
+            <i class="fas fa-arrow-right mr-2"></i> Lihat Semua Produk
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
+
+           
+    </section>
+
+    <!-- PUBG Section -->
+    <section id="pubg" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center mb-10">
+                <img src="https://img.icons8.com/color/60/000000/pubg.png" alt="PUBG" class="mr-3">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">PUBG Mobile Top Up</h2>
+            </div>
+
+            <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 Barang Terlaris | Flash Sale PUBG Mobile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .flash-pulse {
+            animation: pulse 1.5s infinite;
+        }
+        .discount-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #ef4444;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .sold-badge {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background: #05a305;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+<div class="container mx-auto px-4 py-8">
+    <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-gray-800 mb-2">
+            <span class="bg-gradient-to-r from-yellow-500 to-red-500 text-transparent bg-clip-text">
+                3 Barang Terlaris!
+            </span>
+        </h2>
+    </div>
+
+    <!-- Produk Terlaris -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+        <!-- Item 1 -->
+        <div class="bg-white rounded-lg p-4 relative border-2 border-red-300 hover:border-red-500 transition flash-pulse">
+            <div class="sold-badge">Terjual 20+</div>
+            <div class="flex items-center mb-3">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                   
+                    <i class="fas fa-gem icon"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold">15 UC</h4>
+                </div>
+            </div>
+            <div>
+                <span class="line-through text-gray-400 text-sm">Rp 11.000</span>
+                <span class="block text-red-600 font-bold">Rp 9.000</span>
+            </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="bg-white rounded-lg p-4 relative border-2 border-blue-300 hover:border-blue-500 transition flash-pulse">
+            <div class="sold-badge">Terjual 20+</div>
+            <div class="flex items-center mb-3">
+                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                     <i class="fas fa-crown icon"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold">PUBG Mobile Weekly Dealpack</h4>
+                </div>
+            </div>
+            <div>
+                <span class="line-through text-gray-400 text-sm">Rp 15.000</span>
+                <span class="block text-red-600 font-bold">Rp 12.000</span>
+            </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="bg-white rounded-lg p-4 relative border-2 border-green-300 hover:border-green-500 transition flash-pulse">
+            <div class="sold-badge">Terjual 30+</div>
+            <div class="flex items-center mb-3">
+                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                    <i class="fas fa-gem icon"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold">25 UC</h4>
+                </div>
+            </div>
+            <div>
+                <span class="line-through text-gray-400 text-sm">Rp 13.000</span>
+                <span class="block text-red-600 font-bold">Rp 11.000</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tombol Lihat Semua -->
+    <div class="text-center">
+        <a href="Pubg.html" class="inline-block text-center bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold py-3 px-6 rounded-lg hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl">
+            <i class="fas fa-arrow-right mr-2"></i> Lihat Semua Produk
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
+
+            
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="py-16 bg-blue-600 text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12">Apa Kata Pelanggan Kami</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-blue-700 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-500 rounded-full w-12 h-12 flex items-center justify-center">
+                            <i class="fas fa-user text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Andi P*****</h4>
+                            <div class="flex text-yellow-300">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-blue-100">
+                        "Top up di sini sangat cepat prosesnya, hanya 5 menit diamond ML saya sudah masuk. Harga juga lebih murah dibanding tempat lain. Recommended banget!"
+                    </p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-blue-700 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-500 rounded-full w-12 h-12 flex items-center justify-center">
+                            <i class="fas fa-user text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Vina R****</h4>
+                            <div class="flex text-yellow-300">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-blue-100">
+                        "Pertama kali beli UC PUBG di sini, awalnya ragu tapi ternyata aman dan cepat. Adminnya ramah banget, mau jelasin detailnya. Pokoknya puas!"
+                    </p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-blue-700 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-500 rounded-full w-12 h-12 flex items-center justify-center">
+                            <i class="fas fa-user text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Risky N***</h4>
+                            <div class="flex text-yellow-300">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-blue-100">
+                        "Sudah beberapa kali beli VP Valorant di sini, selalu puas dengan pelayanannya. Proses cepat dan harga bersaing. Bakal langganan terus nih."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12 text-gray-800">Pertanyaan yang Sering Ditanyakan</h2>
+            
+            <div class="max-w-3xl mx-auto">
+                <!-- FAQ 1 -->
+                <div class="mb-6 border-b border-gray-200 pb-6">
+                    <h3 class="text-xl font-semibold text-blue-600 mb-2 flex items-center">
+                        <i class="fas fa-question-circle mr-3"></i> Berapa lama proses top up biasanya?
+                    </h3>
+                    <p class="text-gray-600">
+                        Proses top up biasanya memakan waktu 5-15 menit setelah pembayaran dikonfirmasi. Untuk pembelian di atas jam 9 malam, proses mungkin memakan waktu lebih lama.
+                    </p>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="mb-6 border-b border-gray-200 pb-6">
+                    <h3 class="text-xl font-semibold text-blue-600 mb-2 flex items-center">
+                        <i class="fas fa-question-circle mr-3"></i> Metode pembayaran apa saja yang tersedia?
+                    </h3>
+                    <p class="text-gray-600">
+                        Untuk saat ini kami hanya menerima metode pembayaran menggunakan Qris. Kedepanya akan tersedia banyak metode pembayaran lain.
+                    </p>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="mb-6 border-b border-gray-200 pb-6">
+                    <h3 class="text-xl font-semibold text-blue-600 mb-2 flex items-center">
+                        <i class="fas fa-question-circle mr-3"></i> Bagaimana jika diamond/UC/VP tidak masuk?
+                    </h3>
+                    <p class="text-gray-600">
+                        Jika dalam 30 menit item belum masuk, silakan hubungi kami via WhatsApp dengan menyertakan bukti transfer. Kami akan memprosesnya secepat mungkin.
+                    </p>
+                </div>
+                
+            
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6">Siap Top Up Game Favorit Anda?</h2>
+            <p class="text-lg mb-8 max-w-2xl mx-auto">
+                Dapatkan Diamond, UC, dan VP dengan harga termurah dan proses tercepat. Hubungi kami sekarang juga!
+            </p>
+            <a href="https://wa.me/6283874806543?text=Halo,%20saya%20ingin%20top%20up%20game" 
+               class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-bold text-lg inline-flex items-center">
+                <i class="fab fa-whatsapp mr-3 text-xl"></i> WhatsApp Sekarang
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- About -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">ASTore </h3>
+                    <p class="text-gray-400">
+                        Penyedia layanan top up game termurah dan terpercaya di Indonesia. Melayani dengan cepat dan aman sejak 2023.
+                    </p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Menu Cepat</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#freefire" class="text-gray-400 hover:text-white">Free Fire</a></li>
+                        <li><a href="#mlbb" class="text-gray-400 hover:text-white">Mobile Legends</a></li>
+                        <li><a href="#valorant" class="text-gray-400 hover:text-white">Valorant</a></li>
+                        <li><a href="#pubg" class="text-gray-400 hover:text-white">PUBG</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Hubungi Kami</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fab fa-whatsapp mr-2 text-green-400"></i>
+                            <a href="https://wa.me/6283874806543" class="text-gray-400 hover:text-white">083874806543</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-blue-400"></i>
+                            <span  class="text-gray-400"></span><a href="mailto:cs.astore.com@gmail.com">cs.astore.com@gmail.com
+                        </a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2 text-red-400"></i>
+                            <span class="text-gray-400">Yogyakarta, Indonesia</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                    <div class="mt-6">
+                        <h4 class="font-medium mb-2">Jam Operasional</h4>
+                        <p class="text-gray-400 text-sm">
+                            Senin - Minggu<br>
+                            08.00 - 21.00 WIB
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+                <p>&copy; 2025 ASTore. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/6283874806543?text=Halo,%20saya%20ingin%20top%20up%20game" 
+       class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 z-50">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.game-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
